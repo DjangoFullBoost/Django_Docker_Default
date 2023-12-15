@@ -130,6 +130,9 @@ INSTALLED_APPS = [
 # docker-compose.dev.ymlのコンテナを一括で停止・削除
 docker compose -f docker-compose.dev.yml down -v
 
+# Dockerコンテナを一括で削除
+docker container rm $(docker ps -a -q)
+
 # Dockerイメージを一括で削除
 docker image rm $(docker images -q)
 
