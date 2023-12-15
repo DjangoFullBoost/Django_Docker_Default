@@ -3,7 +3,7 @@ version: "3.9"
 services:
   db:
     build:
-      context: ./MySQL/
+      context: ./mysql/
     container_name: MySQL
     volumes:
       - ./.volumes/data/db:/var/lib/mysql/djangodb
@@ -24,11 +24,11 @@ services:
 
   app:
     build:
-      context: ./Django
+      context: ./django
       dockerfile: Dockerfile_prod
     volumes:
       - tmp-data:/app/tmp
-      - ./Nginx/static:/app/static
+      - ./nginx/static:/app/static
     command: uwsgi --ini uwsgi.ini
     env_file:
       - .env.prod
@@ -43,7 +43,7 @@ services:
       context: ./Nginx/
     volumes:
       - tmp-data:/app/tmp
-      - ./Nginx/static:/app/static
+      - ./nginx/static:/app/static
     ports:
       - "80:80"
     depends_on:

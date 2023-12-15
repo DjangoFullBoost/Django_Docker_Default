@@ -3,7 +3,7 @@ version: "3.9"
 services:
   db:
     build:
-      context: ./MySQL/
+      context: ./mysql/
     container_name: MySQL
     volumes:
       - ./.volumes/data/db:/var/lib/mysql/djangodb
@@ -24,10 +24,10 @@ services:
 
   app:
     build:
-      context: ./Django/
+      context: ./django/
     container_name: Django
     volumes:
-      - ./Django:/app
+      - ./django:/app
     command: python manage.py runserver 0.0.0.0:8000
     env_file:
       - .env.dev
